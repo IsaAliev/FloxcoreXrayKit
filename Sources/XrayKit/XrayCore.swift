@@ -5,8 +5,14 @@ import LibXray
 public enum XrayCore {
     private static var running_on_pid: pid_t = 0
 
-    public static func run(config url: URL, assets: URL, logger: @escaping (String) -> Void, _ completion: @escaping (NEVPNError?) -> ()) {
-        DispatchQueue.global(qos: .userInitiated).async {
+    public static func run(
+        config url: URL,
+        assets: URL,
+        queue: DispatchQueue = .global(qos: .utility),
+        logger: @escaping (String) -> Void,
+        _ completion: @escaping (NEVPNError?) -> ()
+    ) {
+        queue.async {
             running_on_pid = getpid()
             guard running_on_pid > 0 else {
                 logger("XrayCore cannot be running on pid \(running_on_pid). Bailing out.")
