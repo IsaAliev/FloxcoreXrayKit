@@ -6,7 +6,7 @@ public enum XrayCore {
     private static var running_on_pid: pid_t = 0
 
     public static func run(config url: URL, assets: URL, _ completion: @escaping (NEVPNError?) -> ()) {
-        let t = Task(priority: .high) {
+        DispatchQueue.global(qos: .userInitiated).async {
             running_on_pid = getpid()
             guard running_on_pid > 0 else {
                 print("XrayCore cannot be running on pid \(running_on_pid). Bailing out.")

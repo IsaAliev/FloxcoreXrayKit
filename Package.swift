@@ -4,7 +4,7 @@ import PackageDescription
 
 let package = Package(
   name: "XrayKit",
-  platforms: [.iOS(.v16), .macOS(.v14), .macCatalyst(.v16), .tvOS(.v17)],
+  platforms: [.iOS(.v14), .macOS(.v14), .macCatalyst(.v16), .tvOS(.v17)],
   products: [
     .library(
         name: "XrayKit",
